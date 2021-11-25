@@ -8,6 +8,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Stream;
 
+import javax.validation.Payload;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -55,7 +57,7 @@ import com.bluescript.demo.model.CaClaim;
 @Setter
 @RequiredArgsConstructor
 @Log4j2
-@Component
+// @Component
 
 @RestController
 @RequestMapping("/")
@@ -103,12 +105,15 @@ public class Lgacus01 {
     @Autowired
     // private ConvStrToObj convStrToObj;
 
-    @Value("${api.LGACDB01.uri}")
+    @Value("${api.LGACDB01.host}")
     private String LGCDAB01_HOST;
+
     @Value("${api.LGACDB01.uri}")
     private String LGACDB01_URI;
+
     @Value("${api.LGSTSQ.uri}")
     private String LGSTSQ_URI;
+
     @Value("${api.LGSTSQ.host}")
     private String LGSTSQ_HOST;
     @Autowired
@@ -125,6 +130,8 @@ public class Lgacus01 {
         // throw new Exception("LGCA");
 
         // }
+        log.warn("Payload:" + payload.toString());
+        log.warn("dfhcommare:" + dfhcommarea.toString());
         BeanUtils.copyProperties(payload, dfhcommarea);
         log.info(dfhcommarea.getCaCustomerRequest().toString());
 
@@ -145,6 +152,7 @@ public class Lgacus01 {
 
     }
 
+    @Transactional
     public void insertCustomer() {
         log.debug("MethodinsertCustomerstarted..");
         try {

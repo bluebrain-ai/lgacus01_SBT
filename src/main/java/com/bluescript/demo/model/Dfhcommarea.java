@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.extern.log4j.Log4j2;
 import java.util.*;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import com.bluescript.demo.model.CaCustomerRequest;
 import com.bluescript.demo.model.CaCustsecrRequest;
@@ -13,7 +14,7 @@ import com.bluescript.demo.model.CaPolicyRequest;
 
 @Data
 @Component
-
+// @Scope("prototype")
 public class Dfhcommarea {
     private String caRequestId;
     private int caReturnCode;
