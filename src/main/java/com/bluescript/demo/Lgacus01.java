@@ -152,14 +152,14 @@ public class Lgacus01 {
 
     }
 
-    @Transactional
+    // @Transactional
     public void insertCustomer() {
         log.debug("MethodinsertCustomerstarted..");
         try {
             WebClient webclientBuilder = WebClient.create(LGCDAB01_HOST);
             Mono<Dfhcommarea> lgacdb01Resp = webclientBuilder.post().uri(LGACDB01_URI)
                     .body(Mono.just(dfhcommarea), Dfhcommarea.class).retrieve().bodyToMono(Dfhcommarea.class)
-                    .timeout(Duration.ofMillis(10_000));
+                    ;//.timeout(Duration.ofMillis(10_000));
             dfhcommarea = lgacdb01Resp.block();
         } catch (Exception e) {
             log.error(e);
@@ -180,7 +180,7 @@ public class Lgacus01 {
         try {
             Mono<ErrorMsg> lgstsqResp = webclientBuilder.post().uri(LGSTSQ_URI)
                     .body(Mono.just(errorMsg), ErrorMsg.class).retrieve().bodyToMono(ErrorMsg.class)
-                    .timeout(Duration.ofMillis(10_000));
+                    ;//.timeout(Duration.ofMillis(10_000));
             errorMsg = lgstsqResp.block();
         } catch (Exception e) {
             log.error(e);
@@ -191,7 +191,7 @@ public class Lgacus01 {
                 try {
                     Mono<String> lgstsqResp = webclientBuilder.post().uri(LGSTSQ_URI)
                             .body(Mono.just(caErrorMsg), String.class).retrieve().bodyToMono(String.class)
-                            .timeout(Duration.ofMillis(10_000));
+                            ;//.timeout(Duration.ofMillis(10_000));
                     caErrorMsg = lgstsqResp.block();
                 } catch (Exception e) {
                     log.error(e);
@@ -203,7 +203,7 @@ public class Lgacus01 {
                 try {
                     Mono<String> lgstsqResp = webclientBuilder.post().uri(LGSTSQ_URI)
                             .body(Mono.just(caErrorMsg), String.class).retrieve().bodyToMono(String.class)
-                            .timeout(Duration.ofMillis(10_000));
+                            ;//.timeout(Duration.ofMillis(10_000));
                     caErrorMsg = lgstsqResp.block();
                 } catch (Exception e) {
                     log.error(e);
